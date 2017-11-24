@@ -1,10 +1,10 @@
-
 // server.cpp : 定义控制台应用程序的入口点。
 
 #include<iostream>
 #include<WinSock2.h>
 #include<WS2tcpip.h>
 using namespace std;
+
 #pragma comment (lib, "Ws2_32.lib")//表示链接到ws2_32.lib这个库，ws2_32是winsock2的库文件 这里是库文件！！！
 //#pragma comment(compiler)
 //winsock2相当于连接系统和我使用的软件之间交流的一个接口
@@ -103,7 +103,7 @@ int main()
 
 	i_result = listen(server, SOMAXCONN);//让套接字server处于监听到来的连接请求的状态
 										 //等待连接队列的最大长度，一般设置为系统值SOMAXCONN
-										 //原型：int i_result=listen(SOCKET server, SOMAXCONN);
+	//原型：int i_result=listen(SOCKET server, SOMAXCONN);
 	if (i_result != 0)
 	{
 		cout << "listen() function failed with error :" << WSAGetLastError() << endl;
@@ -119,7 +119,7 @@ int main()
 
 	int len_addr = sizeof(addr_client);
 	client = accept(server, (SOCKADDR *)&addr_client, &len_addr);//在套接口接收一个链接，赋值给一个SOCKET client
-																 //函数原型：SOCKET client=accept(SOCKET server, （struct SOCKEADDR * ） &addr_client, &sizeof(addr_client));
+	//函数原型：SOCKET client=accept(SOCKET server, （struct SOCKEADDR * ） &addr_client, &sizeof(addr_client));
 
 	if (client == INVALID_SOCKET)
 	{
@@ -145,8 +145,8 @@ int main()
 	{
 		memset(recieve_buf, 0, sizeof(recieve_buf));//缓存区间先置0
 		i_result = recv(client, ip_buf, ip_buf_size, 0);//用于已连接的数据报或流式套接口进行数据的接收
-														//函数原型:int i_result=recv( SOCKET client,ip_buf, ip_buf_size, int flags);
-														//flag一般设置为0
+		//函数原型:int i_result=recv( SOCKET client,ip_buf, ip_buf_size, int flags);
+		//flag一般设置为0
 		if (i_result > 0)
 		{
 			if (strcmp(ip_buf, "exit"))//exit表示客户端请求断开连接
@@ -161,7 +161,7 @@ int main()
 			//函数原型：int send_result= send( SOCKET client, recieve_buf, int len, int flags);
 			//len表示收到数据的字节数，所以不能使用recieve_buf_size，可能小于这个值
 			//flag表示调用的方式
-			if (send_result != 0)
+			if (send_result!=0)
 			{
 				cout << "send() function failed with error: " << WSAGetLastError() << endl;
 				closesocket(client);
@@ -188,7 +188,7 @@ int main()
 	//函数原型：int i_result=shutdown( SOCKET client, int how);
 	//how：标志，用于描述禁止哪些操作
 	//取值为：SD_RECEIVE、SD_SEND、SD_BOTH(SD=shutdown)
-	if (i_result != 0)
+	if (i_result!=0)
 	{
 		cout << "shutdown() function failed with error: " << WSAGetLastError() << endl;
 		closesocket(client);
@@ -203,3 +203,4 @@ int main()
 	system("pause");
 	return 0;
 }
+

@@ -60,7 +60,7 @@ int main()
 	//getaddrinfo()返回地址信息，地址信息存放在addrinfo结构体result中 
 	//原型：int i_result=getaddrinfo(*hostname,*service,struct addrinfo *hints, struct addrinfo **result );
 	//service：服务名可以是十进制的端口号，也可以是已定义的服务名称，如ftp、http等
-	i_result = getaddrinfo(nullptr, default_port, &hints, &result);
+	i_result = getaddrinfo("127.0.0.1", default_port, &hints, &result);
 	//当hostname主机名为NULL，AI_PASSIVE置位，则返回的地址将是通配地址，通配地址即全0，代表任意地址
 
 	if (i_result != 0)
@@ -73,15 +73,21 @@ int main()
 	}
 	//原型：int socket( int af, int type, int protocol)根据主机地址信息result创建一个服务器端的套接字SOCKET server
 	//不成功返回INVALID_SOCKET
-	//server = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
+	client = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
 	//原型：SOCKET server=socket(result->ai_family, result->ai_socktype, result->ai_protocol);
-
+	if (client == INVALID_SOCKET)
+	{
+		cout << "socket() function failed with error : " << WSAGetLastError() << endl;
+		WSACleanup();
+		system("pause");
+		return 0;
+	}
 
 	i_result = connect(client, result->ai_addr, result->ai_addrlen);
 	//客户端使用，相当于服务器端的bind()函数
 	//用于建立与指定socket的连接
 	//函数原型: int i_reault=connect(SOCKET client,result->ai_addr, result->ai_addrlen);
-	if (i_result != 0)
+	if (i_result == INVALID_SOCKET)
 	{
 		cout << "connect() function failed with error: " << WSAGetLastError() << endl;
 		freeaddrinfo(result);
@@ -102,10 +108,10 @@ int main()
 
 		cout << "输入想发送的信息：";
 		cin.getline(send_buf, send_buf_size);
-		i_result = send(client, send_buf, strlen(send_buf), 0);
+		i_result = send(client, send_buf, (strlen(send_buf)), 0);
 		//函数原型：int i_result=send( SOCKET client, send_buf, int len, int flags);
 
-		if (i_result != 0)
+		if (i_result ==SOCKET_ERROR)
 		{
 			cout << "send() function failed with error :" << WSAGetLastError() << endl;
 			closesocket(client);
@@ -123,7 +129,7 @@ int main()
 
 		if (recieve_result > 0)
 		{
-			cout << "服务器返回信息的字节数为：" << recieve_result << endl;
+			cout << "服务器返回信息的字节数为：" << send_buf << endl;
 		}
 		else if (recieve_result == 0)
 		{
