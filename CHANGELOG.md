@@ -14,6 +14,6 @@
 
 输入exit停止传输
 
-![socket](C:\Users\马克\Desktop)
+![Image text](https://github.com/shangli-cuc/picture/blob/master/%E5%8D%95%E7%BA%BF%E7%A8%8BWindows-Socket%E8%BF%90%E8%A1%8C.png)
 
 时间：2017.11.24
