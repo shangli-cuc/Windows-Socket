@@ -14,6 +14,8 @@
 
 输入exit停止传输
 
+完成了一个单线程客户端登录服务器的程序
+
 ![Image text](https://github.com/shangli-cuc/picture/blob/master/%E5%8D%95%E7%BA%BF%E7%A8%8BWindows-Socket%E8%BF%90%E8%A1%8C.png)
 
 时间：2017.11.24
@@ -34,3 +36,13 @@
 2、client端突然掉线（没有通过输入exit的方式停止传输，采取关闭cmd窗口的方式）时，哪怕还有其他client在线，整个server也会停止
 
 时间：2017.11.29
+
+# debug上述bug的情况说明
+
+之前发现发送给server端的信息，server本身可以收到，但是不能返回client，最后发现是定义的ip_buf_size和send_buf_size长度忘记改了
+
+改完之后，debug成功
+
+！[Image text](https://github.com/shangli-cuc/picture/blob/master/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8debug.png)
+
+
