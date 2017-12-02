@@ -18,8 +18,8 @@ using namespace std;
 
 const char default_port[] = "5000";//默认端口
 								   //const int recieve_buf_size = 256;//默认缓冲区大小
-const int send_buf_size = 256;//默认发送信息缓冲区大小
-const int ip_buf_size = 65;
+const int send_buf_size = 1024;//默认发送信息缓冲区大小
+const int ip_buf_size = 129;
 
 int main()
 {
