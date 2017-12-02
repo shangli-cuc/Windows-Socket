@@ -28,7 +28,7 @@
 
 同样，输入exit停止传输
 
-！[Image text](https://github.com/shangli-cuc/picture/blob/master/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8Windows-Socket%E8%BF%90%E8%A1%8C.png)
+![Image text](https://github.com/shangli-cuc/picture/blob/master/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8Windows-Socket%E8%BF%90%E8%A1%8C.png)
 
 现在发现了2个bug
 
@@ -43,6 +43,6 @@
 
 改完之后，debug成功
 
-！[Image text](https://github.com/shangli-cuc/picture/blob/master/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8debug.png)
+![Image text](https://github.com/shangli-cuc/picture/blob/master/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8debug.png)
 
 时间：2017.12.02
