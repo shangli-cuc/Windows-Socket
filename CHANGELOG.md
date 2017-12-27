@@ -75,3 +75,14 @@
 
 时间：2017.12.26
 
+---
+
+# 多线程发送文件修改说明
+
+对server端和client端线程函数ThreadProcess的循环读写send和recv函数的退出机制做了修改，因为之前的退出会出现死循环的现象，视频文件还是不可以发送，只能看几分钟的，至今未找到原因，回头问老师，发送后的文件会比原文件大一点，iso、txt、doc、docx、rar文件均能成功发送
+
+附一张效果图
+![image_text](https://github.com/shangli-cuc/picture/blob/master/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8F%91%E9%80%81%E6%96%87%E4%BB%B6debug%E7%89%88%E6%9C%AC.png)
+
+时间：2017.12.27
+
