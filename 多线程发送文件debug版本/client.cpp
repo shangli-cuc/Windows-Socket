@@ -16,7 +16,7 @@ struct threadinfo
 	int thread_num;
 	long long seek;
 };
-fstream FileCopy("e:/新建文件夹copy", ios::out | ios::binary);//  归来Copy.mp4
+fstream FileCopy("e:/ubuntukylinCopy.iso", ios::out | ios::binary);// e:/clientCopy.txt
 DWORD WINAPI ThreadProcess(LPVOID lpParameter)
 {
 	cout << "接收线程ID：" << GetCurrentThreadId() << endl;
@@ -31,17 +31,24 @@ DWORD WINAPI ThreadProcess(LPVOID lpParameter)
 
 	//cout << GetCurrentThreadId() << " 本次写入的长度：" << len << endl;
 
-	do
+	while(true)
 	{
 		//cout << GetCurrentThreadId() << " 开始写入前的seek：" << FileCopy.tellg() << endl;
 		memset(temp, 0, sizeof(temp));
+		if (len < default_buffer_len)
+		{
+			num = recv(info->connect_client, temp, len, 0);
+			FileCopy.write(temp, len);
+			//cout << GetCurrentThreadId() << " " << num << " " << len << endl;
+			break;
+		}
 		num = recv(info->connect_client, temp, default_buffer_len, 0);
 		FileCopy.write(temp, default_buffer_len);
 		//cout << temp;
 		len -= num;
 		//cout << GetCurrentThreadId() << " " << num << " " << len << endl;
 		//cout << GetCurrentThreadId() <<" "<< FileCopy.tellp() << endl; 
-	}while (len>0);
+	}
 	//cout << GetCurrentThreadId() << " 写入完成后文件长度：" << FileCopy.tellp() << endl;
 	cout << "接收线程ID" << GetCurrentThreadId() << "完成..." << endl;
 	return 0;
