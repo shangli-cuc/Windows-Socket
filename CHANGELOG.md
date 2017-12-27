@@ -53,7 +53,7 @@
 
 希望实现的功能是：server端打开一个文件读取它的长度，分成5个线程发送给client端，运行结果
 
-！[Image_text](https://github.com/shangli-cuc/picture/blob/master/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8F%91%E9%80%81%E6%96%87%E4%BB%B6bug%E7%89%88%E6%9C%AC.png)
+![Image_text](https://github.com/shangli-cuc/picture/blob/master/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8F%91%E9%80%81%E6%96%87%E4%BB%B6bug%E7%89%88%E6%9C%AC.png)
 
 初步想法是读取文件的函数用的有问题，这里用的是MFC的CFile，下一步准备实施fstream头文件使用的文件流函数
 
@@ -67,4 +67,22 @@
 
 时间：2017.12.20
 
+---
+
+# 多线程发送文件
+
+实现功能：试了试txt、word文件都可以实现发送，但是视频死活不可以，好像有文件错位，这是个简版的，把报错语句都删掉了，看起来比较舒服，暂时就这样吧，毕竟还要考试
+
+时间：2017.12.26
+
+---
+
+# 多线程发送文件修改说明
+
+对server端和client端线程函数ThreadProcess的循环读写send和recv函数的退出机制做了修改，因为之前的退出会出现死循环的现象，视频文件还是不可以发送，只能看几分钟的，至今未找到原因，回头问老师，发送后的文件会比原文件大一点，iso、txt、doc、docx、rar文件均能成功发送
+
+附一张效果图
+![image_text](https://github.com/shangli-cuc/picture/blob/master/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8F%91%E9%80%81%E6%96%87%E4%BB%B6debug%E7%89%88%E6%9C%AC.png)
+
+时间：2017.12.27
 
