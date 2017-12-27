@@ -53,7 +53,7 @@
 
 希望实现的功能是：server端打开一个文件读取它的长度，分成5个线程发送给client端，运行结果
 
-！[Image_text](https://github.com/shangli-cuc/picture/blob/master/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8F%91%E9%80%81%E6%96%87%E4%BB%B6bug%E7%89%88%E6%9C%AC.png)
+![Image_text](https://github.com/shangli-cuc/picture/blob/master/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8F%91%E9%80%81%E6%96%87%E4%BB%B6bug%E7%89%88%E6%9C%AC.png)
 
 初步想法是读取文件的函数用的有问题，这里用的是MFC的CFile，下一步准备实施fstream头文件使用的文件流函数
 
