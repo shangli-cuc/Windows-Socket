@@ -9,7 +9,7 @@ using namespace std;
 #define default_buffer_len 1024
 #define max_thread 5
 CRITICAL_SECTION cs;
-fstream file("e:/新建文件夹", ios::in | ios::binary);//   迅雷下载/归来.mp4
+fstream file("d:/迅雷下载/安装包/ubuntukylin.iso", ios::in | ios::binary);//   e:/client.txt
 struct  threadinfo
 {
 	SOCKET client_socket;
@@ -25,14 +25,20 @@ DWORD WINAPI ThreadProcess(LPVOID lpParameter)
 	char temp[default_buffer_len];
 	file.seekg(info->seek, ios::beg);
 	long long len = info->count_size;
-	do
+	while(true)
 	{
 		memset(temp, 0, sizeof(temp));
 		file.read(temp, default_buffer_len);
+		if (len < default_buffer_len)
+		{
+			num = send(info->client_socket, temp, len, 0);
+			break;
+		}
 		num = send(info->client_socket, temp, default_buffer_len, 0);
 		//cout << temp;
 		len -= num;
-	} while (len>0);
+		//cout << GetCurrentThreadId() << " " << num << " " << len << endl;
+	}
 	cout << "发送线程ID" << GetCurrentThreadId() << "完成..." << endl;
 	return 0;
 }
